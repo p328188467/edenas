@@ -8,14 +8,14 @@ import sys
 import numpy as np
 import tensorflow as tf
 
-from src.cifar10.models import Model
-from src.cifar10.image_ops import conv
-from src.cifar10.image_ops import fully_connected
-from src.cifar10.image_ops import batch_norm
-from src.cifar10.image_ops import batch_norm_with_mask
-from src.cifar10.image_ops import relu
-from src.cifar10.image_ops import max_pool
-from src.cifar10.image_ops import global_avg_pool
+from src.fashion_minst.models import Model
+from src.fashion_minst.image_ops import conv
+from src.fashion_minst.image_ops import fully_connected
+from src.fashion_minst.image_ops import batch_norm
+from src.fashion_minst.image_ops import batch_norm_with_mask
+from src.fashion_minst.image_ops import relu
+from src.fashion_minst.image_ops import max_pool
+from src.fashion_minst.image_ops import global_avg_pool
 
 from src.utils import count_model_params
 from src.utils import get_train_ops
@@ -677,7 +677,7 @@ class GeneralChild(Model):
 
       def _pre_process(x):
         x = tf.pad(x, [[4, 4], [4, 4], [0, 0]])
-        x = tf.random_crop(x, [32, 32, 3], seed=self.seed)
+        x = tf.random_crop(x, [28, 28, 1], seed=self.seed)
         x = tf.image.random_flip_left_right(x, seed=self.seed)
         if self.data_format == "NCHW":
           x = tf.transpose(x, [2, 0, 1])

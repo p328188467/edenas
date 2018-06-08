@@ -4,12 +4,12 @@ import sys
 import numpy as np
 import tensorflow as tf
 
-from src.cifar10.image_ops import conv
-from src.cifar10.image_ops import fully_connected
-from src.cifar10.image_ops import batch_norm
-from src.cifar10.image_ops import relu
-from src.cifar10.image_ops import max_pool
-from src.cifar10.image_ops import global_avg_pool
+from src.fashion_minst.image_ops import conv
+from src.fashion_minst.image_ops import fully_connected
+from src.fashion_minst.image_ops import batch_norm
+from src.fashion_minst.image_ops import relu
+from src.fashion_minst.image_ops import max_pool
+from src.fashion_minst.image_ops import global_avg_pool
 
 from src.utils import count_model_params
 from src.utils import get_train_ops
@@ -70,6 +70,9 @@ class Model(object):
     with tf.device("/cpu:0"):
       # training data
       self.num_train_examples = np.shape(images["train"])[0]
+      print(self.num_train_examples)
+      print("---------")
+      print(np.shape(images["train"]))
       self.num_train_batches = (
         self.num_train_examples + self.batch_size - 1) // self.batch_size
       x_train, y_train = tf.train.shuffle_batch(

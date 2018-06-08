@@ -8,15 +8,15 @@ import sys
 import numpy as np
 import tensorflow as tf
 
-from src.cifar10.models import Model
-from src.cifar10.image_ops import conv
-from src.cifar10.image_ops import fully_connected
-from src.cifar10.image_ops import batch_norm
-from src.cifar10.image_ops import batch_norm_with_mask
-from src.cifar10.image_ops import relu
-from src.cifar10.image_ops import max_pool
-from src.cifar10.image_ops import drop_path
-from src.cifar10.image_ops import global_avg_pool
+from src.fashion_minst.models import Model
+from src.fashion_minst.image_ops import conv
+from src.fashion_minst.image_ops import fully_connected
+from src.fashion_minst.image_ops import batch_norm
+from src.fashion_minst.image_ops import batch_norm_with_mask
+from src.fashion_minst.image_ops import relu
+from src.fashion_minst.image_ops import max_pool
+from src.fashion_minst.image_ops import drop_path
+from src.fashion_minst.image_ops import global_avg_pool
 
 from src.utils import count_model_params
 from src.utils import get_train_ops
@@ -246,7 +246,7 @@ class MicroChild(Model):
     with tf.variable_scope(self.name, reuse=reuse):
       # the first two inputs
       with tf.variable_scope("stem_conv"):
-        w = create_weight("w", [3, 3, 3, self.out_filters * 3])
+        w = create_weight("w", [3, 3, 1, self.out_filters * 3])
         x = tf.nn.conv2d(
           images, w, [1, 1, 1, 1], "SAME", data_format=self.data_format)
         x = batch_norm(x, is_training, data_format=self.data_format)

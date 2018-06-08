@@ -15,12 +15,11 @@ def _read_data(data_path):
   """
   images, labels = [], []
  
-  batch_images, batch_labels = mnist_reader.load_mnist(data_path, kind='train')
+  X_test, y_test = mnist_reader.load_mnist(data_path, kind='train')
     #X_test, y_test = mnist_reader.load_mnist('data/fashion', kind='t10k')
     #data = pickle.load(finp,encoding='bytes')
-  print(batch_images)
-    #batch_images = data[b'data'].astype(np.float32) / 255.0
-    #batch_labels = np.array(data[b'labels'], dtype=np.int32)
+  batch_images = X_test.astype(np.float32) / 255.0
+  batch_labels = np.array(y_test, dtype=np.int32)
   images.append(batch_images)
   labels.append(batch_labels)
   images = np.concatenate(images, axis=0)
