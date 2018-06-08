@@ -327,7 +327,7 @@ class GeneralChild(Model):
       with tf.variable_scope("final_conv"):
         w = create_weight("w", [self.num_branches * out_filters, out_filters])
         w_mask = tf.constant([False] * (self.num_branches * out_filters), tf.bool)
-        new_range = tf.range(0, self.num_branches * out_filters, dtype=tf.int32)
+        new_range = tf.range(0, self.num_branches * out_filters, dtype=tf.int8)
         for i in range(self.num_branches):
           start = out_filters * i + count[2 * i]
           new_mask = tf.logical_and(

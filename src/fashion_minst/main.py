@@ -150,7 +150,7 @@ def get_ops(images, labels):
       num_layers=FLAGS.child_num_layers,
       num_branches=FLAGS.child_num_branches,
       out_filters=FLAGS.child_out_filters,
-      lstm_size=32,
+      lstm_size=28,
       lstm_num_layers=1,
       lstm_keep_prob=1.0,
       tanh_constant=FLAGS.controller_tanh_constant,
